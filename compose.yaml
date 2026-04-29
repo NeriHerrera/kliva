@@ -4,4 +4,11 @@ services:
       context: .
     ports:
       - "8010:8010"
+    networks:
+      - traefik
     restart: unless-stopped
+
+networks:
+  traefik:
+    external: true
+    name: traefik_proxy

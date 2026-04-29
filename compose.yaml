@@ -1,0 +1,7 @@
+services:
+  klivaweb:
+    build:
+      context: .
+    ports:
+      - "8010:8010"
+    restart: unless-stopped

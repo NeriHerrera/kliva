@@ -1138,6 +1138,223 @@ a {
   color: rgba(243, 246, 252, 0.96);
 }
 
+@media (min-width: 993px) {
+  :root {
+    --content-width: 1420px;
+  }
+
+  .header-inner {
+    min-height: 70px;
+    padding: 8px clamp(18px, 1.6vw, 28px);
+  }
+
+  .brand img {
+    width: clamp(70px, 4.4vw, 92px);
+  }
+
+  .site-nav {
+    padding: 6px;
+  }
+
+  .site-nav a {
+    min-height: 38px;
+    font-size: clamp(0.86rem, 0.78vw, 0.93rem);
+    padding-inline: clamp(12px, 0.82vw, 16px);
+  }
+
+  .lang-toggle {
+    min-width: 86px;
+    height: 40px;
+    gap: 8px;
+    padding-inline: 12px;
+  }
+
+  .lang-toggle-label {
+    font-size: 0.76rem;
+  }
+
+  .hero-layout {
+    grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+    column-gap: clamp(22px, 2.2vw, 40px);
+    padding-inline: clamp(22px, 1.9vw, 46px);
+  }
+
+  .hero-copy {
+    max-width: 470px;
+    padding: clamp(122px, 13.2vh, 152px) 0 clamp(86px, 9.5vh, 112px);
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.28rem, 3.7vw, 3.95rem);
+  }
+
+  .hero-copy h1 span {
+    margin-top: 10px;
+  }
+
+  .hero-text {
+    margin-top: 18px;
+    max-width: 430px;
+    font-size: clamp(0.86rem, 0.82vw, 0.94rem);
+    line-height: 1.54;
+  }
+
+  .insight-band {
+    margin-top: 44px;
+    padding-bottom: 38px;
+  }
+
+  .insight-item {
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 20px 22px;
+  }
+
+  .insight-item h3 {
+    font-size: 1.08rem;
+  }
+
+  .insight-item p {
+    font-size: 0.9rem;
+    line-height: 1.58;
+  }
+
+  .section-block {
+    padding: 66px 0 78px;
+  }
+
+  .services-block,
+  .results-block {
+    margin-top: -28px;
+    padding-top: 96px;
+  }
+
+  .contact-block {
+    margin-top: -28px;
+    padding-top: 84px;
+    padding-bottom: 34px;
+  }
+
+  .section-head {
+    max-width: 700px;
+    margin-bottom: 32px;
+  }
+
+  .compact-head {
+    margin-bottom: 30px;
+  }
+
+  .section-kicker {
+    margin-bottom: 12px;
+    font-size: clamp(1rem, 1.02vw, 1.18rem);
+  }
+
+  .section-head h2 {
+    font-size: clamp(1.88rem, 2.8vw, 2.72rem);
+  }
+
+  .section-lead {
+    max-width: 640px;
+    margin-top: 14px;
+    font-size: 0.98rem;
+    line-height: 1.58;
+  }
+
+  .panel-card {
+    padding: 22px 20px 20px;
+  }
+
+  .panel-card h3 {
+    margin-top: 16px;
+    font-size: 1.34rem;
+  }
+
+  .panel-card p {
+    margin-top: 10px;
+    font-size: 0.94rem;
+    line-height: 1.56;
+  }
+
+  .service-card h3 {
+    font-size: 1.22rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+  }
+
+  .tech-icon {
+    width: 74px;
+    height: 74px;
+  }
+
+  .tech-icon.large {
+    width: 94px;
+    height: 94px;
+  }
+
+  .tech-icon-svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .result-item {
+    padding: 20px 16px;
+  }
+
+  .result-item h3 {
+    font-size: 1.12rem;
+  }
+
+  .result-item p {
+    font-size: 0.92rem;
+    line-height: 1.54;
+  }
+
+  .contact-shell {
+    padding: 28px 26px 26px;
+  }
+
+  .contact-head {
+    margin-bottom: 20px;
+  }
+
+  .contact-head h2 {
+    font-size: clamp(1.98rem, 3.3vw, 3.4rem);
+  }
+
+  .contact-intro {
+    margin-top: 16px;
+    padding-top: 16px;
+    font-size: clamp(0.94rem, 0.96vw, 1rem);
+    line-height: 1.56;
+  }
+
+  .contact-info-row,
+  .contact-form-panel {
+    padding: 20px 18px;
+  }
+
+  .contact-info-card {
+    min-height: 124px;
+    padding: 20px 16px 22px;
+    gap: 10px;
+  }
+
+  .contact-info-card p,
+  .contact-info-card a {
+    font-size: clamp(1rem, 1.02vw, 1.14rem);
+  }
+
+  .contact-form-panel h3 {
+    font-size: clamp(1.28rem, 1.46vw, 1.56rem);
+  }
+
+  .form-field span {
+    font-size: 0.84rem;
+  }
+}
+
 @media (max-width: 1200px) {
   .hero-copy {
     max-width: 580px;

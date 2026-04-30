@@ -23,7 +23,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 120px;
+  scroll-padding-top: 16px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -54,7 +54,7 @@ a {
 }
 
 .site-header {
-  position: fixed;
+  position: absolute;
   inset: 0 0 auto 0;
   z-index: 40;
   padding-top: env(safe-area-inset-top);
@@ -1174,27 +1174,34 @@ a {
   }
 
   .hero-layout {
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
     column-gap: clamp(18px, 1.9vw, 32px);
     padding-inline: clamp(20px, 1.6vw, 40px);
   }
 
   .hero-copy {
-    max-width: 440px;
+    max-width: 548px;
     padding: clamp(114px, 12vh, 140px) 0 clamp(78px, 8.6vh, 96px);
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.08rem, 3.15vw, 3.5rem);
+    font-size: clamp(2.56rem, 3.86vw, 4.34rem);
+    line-height: 0.89;
+    text-shadow:
+      0 18px 46px rgba(0, 0, 0, 0.36),
+      0 0 30px rgba(255, 255, 255, 0.06);
   }
 
   .hero-copy h1 span {
     margin-top: 8px;
+    text-shadow:
+      0 20px 44px rgba(0, 0, 0, 0.32),
+      0 0 30px rgba(var(--cyan-rgb), 0.22);
   }
 
   .hero-text {
     margin-top: 16px;
-    max-width: 398px;
+    max-width: 420px;
     font-size: clamp(0.82rem, 0.76vw, 0.9rem);
     line-height: 1.5;
   }
@@ -1357,18 +1364,18 @@ a {
 
 @media (min-width: 1600px) {
   .hero-copy {
-    max-width: 420px;
-    padding-top: 108px;
-    padding-bottom: 78px;
+    max-width: 530px;
+    padding-top: 112px;
+    padding-bottom: 84px;
   }
 
   .hero-copy h1 {
-    font-size: clamp(2rem, 2.9vw, 3.26rem);
+    font-size: clamp(2.46rem, 3.46vw, 3.98rem);
   }
 
   .hero-text {
-    max-width: 384px;
-    font-size: 0.84rem;
+    max-width: 424px;
+    font-size: 0.86rem;
   }
 }
 

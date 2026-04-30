@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>document.documentElement.classList.add('js-enabled');</script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -21,20 +22,26 @@
         <img src="imagenes/logo-transparent.png" alt="Logo KLIVA" />
       </a>
 
-      <div class="header-controls">
-        <nav class="site-nav" aria-label="Navegaci&oacute;n principal">
-          <a href="#inicio">Inicio</a>
-          <a href="#nosotros">Nosotros</a>
-          <a href="#servicios">Servicios</a>
-          <a href="#soluciones">Soluciones</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
+      <nav class="site-nav" id="primary-navigation" aria-label="Navegaci&oacute;n principal">
+        <a class="is-active" href="#inicio">Inicio</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#soluciones">Soluciones</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
 
+      <div class="header-actions">
         <div class="lang-switcher">
           <button class="lang-toggle" type="button" aria-label="Seleccionar idioma" aria-expanded="false" aria-controls="language-menu">
-            <span class="lang-toggle-bar"></span>
-            <span class="lang-toggle-bar"></span>
-            <span class="lang-toggle-bar"></span>
+            <span class="lang-toggle-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18Z"></path>
+                <path d="M3 12h18"></path>
+                <path d="M12 3c2.6 2.4 4 5.5 4 9s-1.4 6.6-4 9c-2.6-2.4-4-5.5-4-9s1.4-6.6 4-9Z"></path>
+              </svg>
+            </span>
+            <span class="lang-toggle-label">ESP</span>
+            <span class="lang-toggle-caret" aria-hidden="true"></span>
           </button>
 
           <div class="lang-menu" id="language-menu" hidden aria-label="Selector de idioma">
@@ -43,6 +50,14 @@
             <button class="lang-option" type="button" data-lang="pt">BRA</button>
           </div>
         </div>
+
+        <button class="menu-toggle" type="button" aria-label="Abrir navegaci&oacute;n" aria-expanded="false" aria-controls="primary-navigation">
+          <span class="menu-toggle-box" aria-hidden="true">
+            <span class="menu-toggle-line"></span>
+            <span class="menu-toggle-line"></span>
+            <span class="menu-toggle-line"></span>
+          </span>
+        </button>
       </div>
     </div>
   </header>
@@ -385,16 +400,26 @@
     const LANGUAGE_STORAGE_KEY = 'kliva-language';
     const contactForm = document.querySelector('.contact-form-panel');
     const backToTopButton = document.querySelector('.back-to-top');
+    const siteHeader = document.querySelector('.site-header');
     const langSwitcher = document.querySelector('.lang-switcher');
     const langToggle = document.querySelector('.lang-toggle');
+    const langToggleLabel = document.querySelector('.lang-toggle-label');
     const langMenu = document.querySelector('.lang-menu');
+    const menuToggle = document.querySelector('.menu-toggle');
     const langOptions = Array.from(document.querySelectorAll('.lang-option'));
     const navLinks = Array.from(document.querySelectorAll('.site-nav a'));
+    const navSections = navLinks
+      .map((link) => {
+        const href = link.getAttribute('href') || '';
+        return href.startsWith('#') ? document.querySelector(href) : null;
+      })
+      .filter(Boolean);
     const insightCards = Array.from(document.querySelectorAll('.insight-item'));
     const aboutCards = Array.from(document.querySelectorAll('.primary-grid .panel-card'));
     const serviceCards = Array.from(document.querySelectorAll('.service-grid .panel-card'));
     const resultCards = Array.from(document.querySelectorAll('.results-frame .result-item'));
     const contactInfoCards = Array.from(document.querySelectorAll('.contact-info-card'));
+    const mobileNavQuery = window.matchMedia('(max-width: 992px)');
     const formFields = contactForm
       ? Array.from(contactForm.querySelectorAll('[data-required-field]'))
       : [];
@@ -440,6 +465,8 @@
         navAria: 'Navegacion principal',
         languageMenuAria: 'Selector de idioma',
         languageToggleAria: 'Seleccionar idioma',
+        menuToggleOpenAria: 'Abrir navegacion',
+        menuToggleCloseAria: 'Cerrar navegacion',
         nav: ['Inicio', 'Nosotros', 'Servicios', 'Soluciones', 'Contacto'],
         heroTitle: 'Consultor&iacute;a integral<span>para el desarrollo<br />de negocios</span>',
         heroText: 'KLIVA es una consultora integral orientada al desarrollo de negocios, que brinda servicios en tecnolog&iacute;a, innovaci&oacute;n, inversi&oacute;n y gesti&oacute;n empresarial, participando en m&uacute;ltiples industrias a trav&eacute;s de soluciones estrat&eacute;gicas y operativas.',
@@ -506,6 +533,8 @@
         navAria: 'Main navigation',
         languageMenuAria: 'Language selector',
         languageToggleAria: 'Select language',
+        menuToggleOpenAria: 'Open navigation',
+        menuToggleCloseAria: 'Close navigation',
         nav: ['Home', 'About', 'Services', 'Solutions', 'Contact'],
         heroTitle: 'Integrated consultancy<span>for business<br />development</span>',
         heroText: 'KLIVA is an integrated consultancy focused on business development, delivering services in technology, innovation, investment and business management across multiple industries through strategic and operational solutions.',
@@ -572,6 +601,8 @@
         navAria: 'Navegacao principal',
         languageMenuAria: 'Seletor de idioma',
         languageToggleAria: 'Selecionar idioma',
+        menuToggleOpenAria: 'Abrir navegacao',
+        menuToggleCloseAria: 'Fechar navegacao',
         nav: ['Inicio', 'Nos', 'Servicos', 'Solucoes', 'Contato'],
         heroTitle: 'Consultoria integral<span>para o desenvolvimento<br />de negocios</span>',
         heroText: 'A KLIVA e uma consultoria integral orientada ao desenvolvimento de negocios, com servicos em tecnologia, inovacao, investimento e gestao empresarial em diferentes industrias por meio de solucoes estrategicas e operacionais.',
@@ -653,6 +684,31 @@
       });
     };
 
+    const setActiveNavLink = (sectionId) => {
+      navLinks.forEach((link) => {
+        link.classList.toggle('is-active', link.getAttribute('href') === `#${sectionId}`);
+      });
+    };
+
+    const syncLanguageToggleLabel = () => {
+      if (!langToggleLabel) {
+        return;
+      }
+
+      const currentOption = langOptions.find((option) => option.dataset.lang === currentLanguage);
+      langToggleLabel.textContent = currentOption ? currentOption.textContent.trim() : 'ESP';
+    };
+
+    const syncMenuToggleLabel = () => {
+      if (!menuToggle) {
+        return;
+      }
+
+      const copy = translations[currentLanguage] || translations.es;
+      const menuIsOpen = siteHeader ? siteHeader.classList.contains('is-menu-open') : false;
+      menuToggle.setAttribute('aria-label', menuIsOpen ? copy.menuToggleCloseAria : copy.menuToggleOpenAria);
+    };
+
     const validateField = (field) => {
       const copy = translations[currentLanguage] || translations.es;
       const wrapper = field.closest('.form-field');
@@ -692,9 +748,31 @@
         return;
       }
 
+      closeMobileMenu();
       langMenu.hidden = false;
       langToggle.setAttribute('aria-expanded', 'true');
       langSwitcher.classList.add('is-open');
+    };
+
+    const closeMobileMenu = () => {
+      if (!siteHeader || !menuToggle) {
+        return;
+      }
+
+      siteHeader.classList.remove('is-menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      syncMenuToggleLabel();
+    };
+
+    const openMobileMenu = () => {
+      if (!siteHeader || !menuToggle || !mobileNavQuery.matches) {
+        return;
+      }
+
+      closeLanguageMenu();
+      siteHeader.classList.add('is-menu-open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      syncMenuToggleLabel();
     };
 
     const applyTranslations = (lang) => {
@@ -739,6 +817,8 @@
         langMenu.setAttribute('aria-label', copy.languageMenuAria);
       }
 
+      syncMenuToggleLabel();
+
       if (backToTopButton) {
         backToTopButton.setAttribute('aria-label', copy.backToTopAria);
       }
@@ -776,6 +856,8 @@
         option.classList.toggle('is-active', option.dataset.lang === currentLanguage);
       });
 
+      syncLanguageToggleLabel();
+
       formFields.forEach((field) => {
         const wrapper = field.closest('.form-field');
         if (wrapper && wrapper.classList.contains('has-error')) {
@@ -793,6 +875,17 @@
     formFields.forEach((field) => {
       field.addEventListener('blur', () => validateField(field));
       field.addEventListener('input', () => validateField(field));
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        const targetId = (link.getAttribute('href') || '').replace('#', '');
+        if (targetId) {
+          setActiveNavLink(targetId);
+        }
+
+        closeMobileMenu();
+      });
     });
 
     if (contactForm) {
@@ -813,6 +906,16 @@
       });
     }
 
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        if (siteHeader && siteHeader.classList.contains('is-menu-open')) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      });
+    }
+
     if (langToggle && langMenu && langSwitcher) {
       langToggle.addEventListener('click', () => {
         if (langMenu.hidden) {
@@ -828,17 +931,61 @@
           closeLanguageMenu();
         });
       });
+    }
 
-      document.addEventListener('click', (event) => {
-        if (!langSwitcher.contains(event.target)) {
-          closeLanguageMenu();
+    document.addEventListener('click', (event) => {
+      if (langSwitcher && !langSwitcher.contains(event.target)) {
+        closeLanguageMenu();
+      }
+
+      if (siteHeader && !siteHeader.contains(event.target)) {
+        closeMobileMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeLanguageMenu();
+        closeMobileMenu();
+      }
+    });
+
+    if (mobileNavQuery.addEventListener) {
+      mobileNavQuery.addEventListener('change', (event) => {
+        if (!event.matches) {
+          closeMobileMenu();
         }
       });
-
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-          closeLanguageMenu();
+    } else if (mobileNavQuery.addListener) {
+      mobileNavQuery.addListener((event) => {
+        if (!event.matches) {
+          closeMobileMenu();
         }
+      });
+    }
+
+    if ('IntersectionObserver' in window && navSections.length) {
+      const visibleSections = new Map();
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleSections.set(entry.target.id, entry.intersectionRatio);
+          } else {
+            visibleSections.delete(entry.target.id);
+          }
+        });
+
+        const [activeSection] = Array.from(visibleSections.entries()).sort((first, second) => second[1] - first[1]);
+        if (activeSection) {
+          setActiveNavLink(activeSection[0]);
+        }
+      }, {
+        rootMargin: '-24% 0px -56% 0px',
+        threshold: [0.2, 0.35, 0.5, 0.7]
+      });
+
+      navSections.forEach((section) => {
+        sectionObserver.observe(section);
       });
     }
 
@@ -889,6 +1036,7 @@
     }
 
     applyTranslations(currentLanguage);
+    setActiveNavLink((window.location.hash || '#inicio').replace('#', '') || 'inicio');
   </script>
 </body>
 </html>
